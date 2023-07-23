@@ -20,7 +20,7 @@ Helps user to add and delete notes.
 N/A
   
 ## Usage 
-User can go to page and add notes that they can  then   save  .   They  can   also   delete  the  note   whenever  they want.
+User can go to page and add notes that they can  then   save  .   They  can   also   delete  the  note   whenever  they want. Just head to this page https://note-taking-express-47b8965d42a2.herokuapp.com/
 ![picture of adding notes in note-taking app](media/noteTaker.png)
 ![picture of saved note in note-taking app](media/SavedNotes.png)
 ![](media/note-taking.gif)
