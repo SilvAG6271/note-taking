@@ -23,6 +23,7 @@ N/A
 User can go to page and add notes that they can  then   save  .   They  can   also   delete  the  note   whenever  they want.
 ![picture of adding notes in note-taking app](media/noteTaker.png)
 ![picture of saved note in note-taking app](media/SavedNotes.png)
+![](media/note-taking.gif)
 
 
 ## Credits
