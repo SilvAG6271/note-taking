@@ -1,60 +1,52 @@
 const express = require("express");
+ let data = require("../db/db.json");
 const uniqid = require("uniqid");
 const fs = require("fs");
-const notes = express.Router();
+const router = express.Router();
+const path = require("path");
 
 
-notes.use(express.json());
-notes.use(express.urlencoded({extended: true}));
 
-notes.get("/api/notes", (req, res) => {
-    fs.readFile(".\db\db.json", "utf8", (err, data) => {
-        if(err) {
-            console.log(err);
-            res.status(500).json({error: "An error occurred while reading the notes"});
-        }else{
-            const notes = JSON.parse(data);
-            res.json(notes);
-        }
-        });
-    });
+router.get("/notes", (req, res) => {
+    console.log({data});
+    res.json(data);
+})
 
-    notes.post("/api/notes", (req, res) => {
-    
-        console.log(`${req.method} request received to add note`);
-    
-        const newNote = req.body;
+
+router.post("/notes", (req, res) => {
+     const newNote = req.body;
         newNote.id = uniqid();
-        
-        fs.readFile("./db/db.json", "utf8", (err, data) => {
-            if(err){
-                res.status(500).json({error: "An error occurred while saving the note."});
-            } else {
-                const notes = JSON.parse(data);
-                notes.push(newNote);
-         
-    
-        fs.writeFile("db/db.json", JSON.stringify(notes), (err) =>{
-        if(err){
-            console.log(err);
-            res.status(500).json({ error: "An error occurred while saving note."});
-        } else {
-            res.json(newNote);
-               }
-            });
-    
-          }
-      });
+        console.log(newNote);
+        console.log(req.body);
+        data.push(newNote);
+         fs.writeFile(path.join(__dirname, "../db/db.json"), 
+        JSON.stringify(data), function (err){
+            if (err) {
+                res.status(404).json({error:err});
+            }
+            res.json(data);
+        });
+
     });
 
-    notes.delete("/api/notes/:id", (req,res) => {
+     
+
+router.delete("/notes/:id", (req,res) => {
         const idToDelete = req.params.id;
-        for (let i = 0; i < notes.length; i++){
-            if (idToDelete == notes[i].id) {
-                notes.splice(i, 1);
+        for (let i = 0; i < data.length; i++){
+            if (idToDelete == data[i].id) {
+                data.splice(i, 1);
             }
         }
+
+        fs.writeFile(path.join(__dirname, "../db/db.json"),
+        JSON.stringify(data), function (err){
+            if (err) {
+                res.status(404).json({error:err});
+            }
+            res.json(data);
+        });
     });
     
-    module.exports = notes
+    module.exports = router;
 

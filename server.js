@@ -1,22 +1,19 @@
-const notes = require("./routes/notes");
-const path = require("path")
-const PORT = 3001;
 const express = require("express");
 const app = express();
+const PORT = process.env.PORT || 3002
 
-app.use(express.json());
+const noteRoute = require("./routes/notes.js");
+const htmlRoute = require("./routes/html.js")
+
+
 app.use(express.urlencoded({extended: true}));
-
-app.use("/notes", notes);
+app.use(express.json());
 app.use(express.static("public"));
 
- app.get("/notes", (req, res) => {
-res.sendFile(path.join(__dirname, "../public/notes.html"));
- });
+app.use("/api", noteRoute);
+app.use("/", htmlRoute);
 
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../public/index.html"));
-});
+
 
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
