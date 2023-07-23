@@ -24,7 +24,7 @@ User can go to page and add notes that they can  then   save  .   They  can   al
 
 
 ## Credits
-I got help from Github user njthanhtrang at "".
+I got help from Github user njthanhtrang at "https://github.com/njthanhtrang".
 
 
 ## License 
