@@ -27,7 +27,7 @@ User can go to page and add notes that they can  then   save  .   They  can   al
 
 
 ## Credits
-I got help from Github user njthanhtrang at "https://github.com/njthanhtrang".
+Got source code from The Coding Bootcamp github, specifically this <https://github.com/coding-boot-camp/miniature-eureka> repo. I also got help from Github user njthanhtrang at <https://github.com/njthanhtrang>.
 
 
 ## License 
